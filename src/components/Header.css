@@ -1,0 +1,8 @@
+.boxHeader {
+  background-color: rgb(112, 36, 36);
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}

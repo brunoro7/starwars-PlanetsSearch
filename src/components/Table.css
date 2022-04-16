@@ -1,0 +1,15 @@
+#tableStarWars {
+  border: solid rgb(112, 36, 36) 2px;
+  width: 100%;
+}
+
+.headerTable {
+  background-color: rgb(172, 86, 62);
+  border: solid rgb(112, 36, 36) 2px;
+  width: 100%;
+}
+
+.bodyTable {
+  border: solid rgb(112, 36, 36) 2px;
+  width: 100%;
+}

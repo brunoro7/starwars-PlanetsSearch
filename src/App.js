@@ -1,9 +1,16 @@
 import React from 'react';
-import './App.css';
+import { Route, BrowserRouter } from 'react-router-dom';
+import StarWarsProvider from './context/StarWarsProvider';
+import './index.css';
+import Home from './page/Home';
 
 function App() {
   return (
-    <span>Hello, App!</span>
+    <StarWarsProvider>
+      <BrowserRouter>
+        <Route to="/" component={ Home } />
+      </BrowserRouter>
+    </StarWarsProvider>
   );
 }
 
