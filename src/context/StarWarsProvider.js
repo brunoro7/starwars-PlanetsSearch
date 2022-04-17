@@ -7,6 +7,7 @@ class StarWarsProvider extends React.Component {
     super();
     this.state = {
       data: [],
+      filterByName: '',
     };
   }
 
@@ -25,11 +26,21 @@ class StarWarsProvider extends React.Component {
     });
   }
 
+  handleChange = ({ target }) => {
+    this.setState({
+      [target.name]: target.value,
+    });
+  };
+
   render() {
     const { Provider } = StarWarsContext;
     const { children } = this.props;
     return (
-      <Provider value={ { ...this.state } }>
+      <Provider
+        value={ { ...this.state,
+          handleChange: this.handleChange,
+        } }
+      >
         { children }
       </Provider>
     );

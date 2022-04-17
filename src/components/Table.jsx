@@ -4,17 +4,21 @@ import StarWarsContext from '../context/StarWarsContext';
 
 class Table extends React.Component {
   render() {
-    const { data } = this.context;
+    const { data, handleChange, filterByName } = this.context;
+
+    const resultFilterName = data
+      .filter((objData) => objData.name.includes(filterByName));
+
     return (
       <>
         <section className="boxMenuFilter">
           <h3>Menu Filter</h3>
-          <label htmlFor="inputTextName">
+          <label htmlFor="filterByName">
             <input
               type="text"
-              name="inputTextName"
+              name="filterByName"
               data-testid="name-filter"
-              onChange={ this.handleChange }
+              onChange={ handleChange }
             />
           </label>
         </section>
@@ -22,13 +26,13 @@ class Table extends React.Component {
         <table border="2" id="tableStarWars">
           <thead className="headerTable">
             <tr>
+              <th>name</th>
               <th>climate</th>
               <th>created</th>
               <th>diameter</th>
               <th>edited</th>
               <th>films</th>
               <th>gravity</th>
-              <th>name</th>
               <th>orbital period</th>
               <th>population</th>
               <th>rotation period</th>
@@ -38,8 +42,9 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody className="bodyTable">
-            {data.map((objtData) => (
+            { resultFilterName.map((objtData) => (
               <tr key={ objtData.name }>
+                <td>{ objtData.name }</td>
                 <td>{ objtData.climate }</td>
                 <td>{ objtData.created }</td>
                 <td>{ objtData.diameter }</td>
@@ -48,7 +53,6 @@ class Table extends React.Component {
                   { objtData.films.map((film) => film) }
                 </td>
                 <td>{ objtData.gravity }</td>
-                <td>{ objtData.name }</td>
                 <td>{ objtData.orbital_period }</td>
                 <td>{ objtData.population }</td>
                 <td>{ objtData.rotation_period }</td>
