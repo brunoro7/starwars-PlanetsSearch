@@ -3,7 +3,7 @@ import './Header.css';
 import StarWarsContext from '../context/StarWarsContext';
 
 class Header extends React.Component {
-  handleClick = async () => {
+  handleClick = () => {
     const { data } = this.context;
 
     console.log(this.context);

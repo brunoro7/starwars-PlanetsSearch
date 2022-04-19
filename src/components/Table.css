@@ -1,15 +1,26 @@
-#tableStarWars {
-  border: solid rgb(112, 36, 36) 2px;
+.boxMain {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
-.headerTable {
-  background-color: rgb(172, 86, 62);
+.boxMenuFilter {
+  background-color: rgb(154, 82, 82);
+  color: whitesmoke;
+  text-align: center;
+}
+
+#tableStarWars {
   border: solid rgb(112, 36, 36) 2px;
-  width: 100%;
+}
+
+.headerTable {
+  background-color: rgb(193, 98, 61);
+  border: solid rgb(112, 36, 36) 2px;
+  font-size: 15px;
 }
 
 .bodyTable {
   border: solid rgb(112, 36, 36) 2px;
-  width: 100%;
+  font-size: 14px;
 }

@@ -8,8 +8,21 @@ class StarWarsProvider extends React.Component {
     this.state = {
       data: [],
       filterByName: '',
+      columnFilter: 'population',
+      comparisonFilter: 'maior que',
+      valueFilter: '0',
+      filterByNumericValues: [
+        // {
+        //   column: 'population',
+        //   comparison: 'maior que',
+        //   value: '0',
+        // },
+      ],
+      isNumericFilter: false,
     };
   }
+
+  // MINUTO 56, ELE MOSTRA A 'FUNÇÃO' QUE VC PRECISA.
 
   async componentDidMount() {
     const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -32,6 +45,25 @@ class StarWarsProvider extends React.Component {
     });
   };
 
+  handleClickFilter = () => {
+    const { columnFilter, comparisonFilter,
+      valueFilter } = this.state;
+
+    const objNumericFilter = {
+      column: columnFilter,
+      comparison: comparisonFilter,
+      value: valueFilter,
+    };
+    console.log('OBJETO NOVO', objNumericFilter);
+
+    this.setState((prevState) => ({
+      filterByNumericValues: [...prevState.filterByNumericValues, objNumericFilter],
+    }));
+
+    const { filterByNumericValues } = this.state;
+    console.log(filterByNumericValues);
+  }
+
   render() {
     const { Provider } = StarWarsContext;
     const { children } = this.props;
@@ -39,6 +71,7 @@ class StarWarsProvider extends React.Component {
       <Provider
         value={ { ...this.state,
           handleChange: this.handleChange,
+          handleClickFilter: this.handleClickFilter,
         } }
       >
         { children }
