@@ -8,21 +8,14 @@ class StarWarsProvider extends React.Component {
     this.state = {
       data: [],
       filterByName: '',
-      columnFilter: 'population',
-      comparisonFilter: 'maior que',
-      valueFilter: '0',
-      filterByNumericValues: [
-        // {
-        //   column: 'population',
-        //   comparison: 'maior que',
-        //   value: '0',
-        // },
-      ],
+      columnFilter: '',
+      comparisonFilter: '',
+      valueFilter: 0,
+      filterByNumericValues: [],
       isNumericFilter: false,
+      newData: [],
     };
   }
-
-  // MINUTO 56, ELE MOSTRA A 'FUNÇÃO' QUE VC PRECISA.
 
   async componentDidMount() {
     const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -45,7 +38,7 @@ class StarWarsProvider extends React.Component {
     });
   };
 
-  handleClickFilter = () => {
+  handleNumericFilter = () => {
     const { columnFilter, comparisonFilter,
       valueFilter } = this.state;
 
@@ -54,14 +47,54 @@ class StarWarsProvider extends React.Component {
       comparison: comparisonFilter,
       value: valueFilter,
     };
-    console.log('OBJETO NOVO', objNumericFilter);
+    this.setNumericFilter(objNumericFilter);
+  }
 
+  setNumericFilter = (objNumericFilter) => {
     this.setState((prevState) => ({
       filterByNumericValues: [...prevState.filterByNumericValues, objNumericFilter],
-    }));
+      isNumericFilter: true,
+      columnFilter: '',
+      comparisonFilter: '',
+      valueFilter: 0,
+    }), () => this.numericFilterON());
+  }
 
-    const { filterByNumericValues } = this.state;
-    console.log(filterByNumericValues);
+  numericFilterON = () => {
+    const { data, filterByNumericValues } = this.state;
+
+    let newData;
+    if (filterByNumericValues[0].comparison === 'menor que') {
+      newData = data
+        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
+        < filterByNumericValues[0].value);
+
+      this.setState({
+        newData,
+      });
+    }
+    if (filterByNumericValues[0].comparison === 'maior que') {
+      newData = data
+        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
+        > filterByNumericValues[0].value);
+
+      this.setState({
+        newData,
+      });
+    }
+    if (filterByNumericValues[0].comparison === 'igual a') {
+      newData = data
+        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
+        === filterByNumericValues[0].value);
+
+      this.setState({
+        newData,
+      });
+    }
+  };
+
+  handleClickFilter = () => {
+    this.handleNumericFilter();
   }
 
   render() {

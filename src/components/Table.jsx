@@ -4,15 +4,20 @@ import StarWarsContext from '../context/StarWarsContext';
 
 class Table extends React.Component {
   render() {
-    const { data, handleChange, filterByName, handleClickFilter } = this.context;
+    const { data, handleChange, filterByName, handleClickFilter,
+      filterByNumericValues, columnFilter, comparisonFilter,
+      valueFilter, newData, isNumericFilter } = this.context;
 
     const resultFilterName = data
       .filter((objData) => objData.name.includes(filterByName));
 
+    const comparFilters = isNumericFilter ? newData : resultFilterName;
+    // console.log(newData);
+
     return (
       <main className="boxMain">
-        <section className="boxMenuFilter">
-          <h3>Menu Filter</h3>
+        <section id="boxFilters">
+          <h3 className="titleMenuFilter">Menu Filter</h3>
           <label htmlFor="filterByName">
             Pesquisa por nome:
             {' '}
@@ -23,7 +28,9 @@ class Table extends React.Component {
               onChange={ handleChange }
             />
           </label>
-          {' '}
+        </section>
+
+        <section id="boxMenuFilter">
           <label htmlFor="columnFilter">
             Coluna:
             {' '}
@@ -32,6 +39,7 @@ class Table extends React.Component {
               data-testid="column-filter"
               type="select"
               onChange={ handleChange }
+              value={ columnFilter }
             >
               <option name="columnFilter" value="population">
                 population
@@ -59,6 +67,7 @@ class Table extends React.Component {
               data-testid="comparison-filter"
               type="select"
               onChange={ handleChange }
+              value={ comparisonFilter }
             >
               <option name="comparisonFilter" value="maior que">
                 maior que
@@ -80,6 +89,7 @@ class Table extends React.Component {
               name="valueFilter"
               data-testid="value-filter"
               onChange={ handleChange }
+              value={ valueFilter }
             />
           </label>
           <button
@@ -90,8 +100,36 @@ class Table extends React.Component {
             Filtrar
           </button>
         </section>
+        <div className="filtersList">
+          <span className="headerFiltersList">
+            <span>Coluna</span>
+            {' '}
+            <span>Operador</span>
+            {' '}
+            <span>Quantidade</span>
+            {' '}
+            <span>Delete</span>
+          </span>
+          { filterByNumericValues.map((objFilter) => (
+            <span
+              key={ objFilter.value }
+              className="selectedFilter"
+            >
+              <span className="spanColumnLine">{ objFilter.column }</span>
+              {' '}
+              <span className="spanColumnLine">{ objFilter.comparison }</span>
+              {' '}
+              <span className="spanColumnLine">{ objFilter.value }</span>
+              {' '}
+              <button className="btnColumnLine" type="button">X</button>
+            </span>
+          ))}
+        </div>
 
         <table border="2" id="tableStarWars">
+          <caption className="titleTable">
+            Planets Information
+          </caption>
           <thead className="headerTable">
             <tr>
               <th>name</th>
@@ -110,7 +148,7 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody className="bodyTable">
-            { resultFilterName.map((objtData) => (
+            { comparFilters.map((objtData) => (
               <tr key={ objtData.name }>
                 <td>{ objtData.name }</td>
                 <td>{ objtData.diameter }</td>

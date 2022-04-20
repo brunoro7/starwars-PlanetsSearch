@@ -1,6 +1,8 @@
 body {
   box-sizing: border-box;
-  background-color: rgb(225, 182, 132);
+  background-color: rgb(120, 115, 97);
+  color:whitesmoke;
   font-family: sans-serif;
   margin: 0;
-}
+  width: 100%;
+  opacity: 0.9;}

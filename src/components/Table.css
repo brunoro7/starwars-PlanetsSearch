@@ -1,26 +1,110 @@
+/* ======= Box Principal ======= */
 .boxMain {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
-.boxMenuFilter {
-  background-color: rgb(154, 82, 82);
-  color: whitesmoke;
+/* ======= Box dos Filtros ======= */
+.titleMenuFilter {
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-decoration: underline 2px;
+  text-transform: uppercase;
+}
+
+#boxFilters {
+  align-items: center;
+  background-color: rgb(18, 14, 3);
+  border: solid rgb(242, 195, 9) 6px;
+  border-style: double;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+#boxMenuFilter {
+  background-color: rgb(18, 14, 3);
+  border: solid rgb(242, 195, 9) 2px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   text-align: center;
 }
 
+.filtersList {
+  background-color: rgb(255, 221, 0);
+  border: solid whitesmoke 4px;
+  border-style: double;
+  color: black;
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  padding: 3px;
+}
+
+.headerFiltersList {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: underline 2px;
+  text-transform: uppercase;
+}
+
+.selectedFilter {
+  align-items: center;
+  background-color: rgb(60, 57, 47);
+  border: solid rgb(242, 195, 9) 2px;
+  color: whitesmoke;
+  display: flex;
+  font-size: 15px;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.spanColumnLine {
+  width: 100px;
+}
+
+.btnColumnLine {
+  background: rgba(255, 0, 0, 0.389);
+  background-color: none;
+  border: solid red 2px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+/* ======= Tabela Star Wars ======= */
 #tableStarWars {
-  border: solid rgb(112, 36, 36) 2px;
+  border: solid rgb(242, 195, 9) 2px;
 }
 
 .headerTable {
-  background-color: rgb(193, 98, 61);
-  border: solid rgb(112, 36, 36) 2px;
+  background-color: rgb(255, 221, 0);
+  border: solid whitesmoke 2px;
+  color: black;
   font-size: 15px;
+  text-decoration: underline 2px;
 }
 
 .bodyTable {
-  border: solid rgb(112, 36, 36) 2px;
+  background-color: rgb(60, 57, 47);
+  border: solid rgb(242, 195, 9) 2px;
   font-size: 14px;
+  text-align: center;
 }
+
+.titleTable {
+  background-color: rgb(18, 14, 3);
+  border: solid rgb(242, 195, 9) 6px;
+  border-style: double;
+  font-weight: 900;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  text-decoration: underline 2px;
+  text-transform: uppercase;
+}
+
+/* .corpoTableFilters {
+  background-color: rgb(60, 57, 47);
+  border: solid rgb(242, 195, 9) 2px;
+  font-size: 14px;
+  text-align: center;
+} */
