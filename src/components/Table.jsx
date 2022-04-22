@@ -101,6 +101,13 @@ class Table extends React.Component {
           </button>
         </section>
         <div className="filtersList">
+          <button
+            className="btnRemoveAll"
+            type="button"
+            data-testid="button-remove-filters"
+          >
+            Remover todas as filtragens
+          </button>
           <span className="headerFiltersList">
             <span>Coluna</span>
             {' '}
@@ -114,6 +121,7 @@ class Table extends React.Component {
             <span
               key={ objFilter.value }
               className="selectedFilter"
+              data-testid="filter"
             >
               <span className="spanColumnLine">{ objFilter.column }</span>
               {' '}

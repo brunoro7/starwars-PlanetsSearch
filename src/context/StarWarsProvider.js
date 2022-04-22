@@ -8,8 +8,8 @@ class StarWarsProvider extends React.Component {
     this.state = {
       data: [],
       filterByName: '',
-      columnFilter: '',
-      comparisonFilter: '',
+      columnFilter: 'population',
+      comparisonFilter: 'maior que',
       valueFilter: 0,
       filterByNumericValues: [],
       isNumericFilter: false,
@@ -66,8 +66,8 @@ class StarWarsProvider extends React.Component {
     let newData;
     if (filterByNumericValues[0].comparison === 'menor que') {
       newData = data
-        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
-        < filterByNumericValues[0].value);
+        .filter((objDataFilt) => Number(objDataFilt[filterByNumericValues[0].column])
+        < Number(filterByNumericValues[0].value));
 
       this.setState({
         newData,
@@ -75,8 +75,8 @@ class StarWarsProvider extends React.Component {
     }
     if (filterByNumericValues[0].comparison === 'maior que') {
       newData = data
-        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
-        > filterByNumericValues[0].value);
+        .filter((objDataFilt) => Number(objDataFilt[filterByNumericValues[0].column])
+        > Number(filterByNumericValues[0].value));
 
       this.setState({
         newData,

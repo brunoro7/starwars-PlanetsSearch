@@ -48,6 +48,11 @@
   text-transform: uppercase;
 }
 
+.btnRemoveAll {
+  cursor: pointer;
+  margin: 10px auto;
+}
+
 .selectedFilter {
   align-items: center;
   background-color: rgb(60, 57, 47);
