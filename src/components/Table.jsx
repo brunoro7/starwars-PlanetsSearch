@@ -6,7 +6,7 @@ class Table extends React.Component {
   render() {
     const { data, handleChange, filterByName, handleClickFilter,
       filterByNumericValues, columnFilter, comparisonFilter,
-      valueFilter, newData, isNumericFilter } = this.context;
+      valueFilter, newData, isNumericFilter, defaultColumnFilter } = this.context;
 
     const resultFilterName = data
       .filter((objData) => objData.name.includes(filterByName));
@@ -41,22 +41,19 @@ class Table extends React.Component {
               onChange={ handleChange }
               value={ columnFilter }
             >
-              <option name="columnFilter" value="population">
-                population
-              </option>
-              <option name="columnFilter" value="orbital_period">
-                orbital_period
-              </option>
-              <option name="columnFilter" value="diameter">
-                diameter
-              </option>
-              <option name="columnFilter" value="rotation_period">
-                rotation_period
-              </option>
-              <option name="columnFilter" value="surface_water">
-                surface_water
-              </option>
+              {
+                defaultColumnFilter.map((eachColumn) => (
+                  <option
+                    name="columnFilter"
+                    value={ eachColumn }
+                    key={ eachColumn }
+                  >
+                    { eachColumn }
+                  </option>
+                ))
+              }
             </select>
+
           </label>
           {' '}
           <label htmlFor="comparisonFilter">

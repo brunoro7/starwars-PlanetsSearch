@@ -14,6 +14,10 @@ class StarWarsProvider extends React.Component {
       filterByNumericValues: [],
       isNumericFilter: false,
       newData: [],
+      defaultColumnFilter: [
+        'population', 'orbital_period', 'diameter',
+        'rotation_period', 'surface_water',
+      ],
     };
   }
 
@@ -51,17 +55,27 @@ class StarWarsProvider extends React.Component {
   }
 
   setNumericFilter = (objNumericFilter) => {
+    console.log(objNumericFilter.column);
+
+    const { defaultColumnFilter } = this.state;
+    const updateColumnFilter = defaultColumnFilter
+      .filter((column) => column !== objNumericFilter.column);
+
     this.setState((prevState) => ({
       filterByNumericValues: [...prevState.filterByNumericValues, objNumericFilter],
       isNumericFilter: true,
       columnFilter: '',
       comparisonFilter: '',
       valueFilter: 0,
+      defaultColumnFilter: [...updateColumnFilter],
     }), () => this.numericFilterON());
   }
 
   numericFilterON = () => {
     const { data, filterByNumericValues } = this.state;
+
+    // const updateColumnFilter = filterByNumericValues
+    //   .filter(() => );
 
     let newData;
     if (filterByNumericValues[0].comparison === 'menor que') {
