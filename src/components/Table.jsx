@@ -4,15 +4,16 @@ import StarWarsContext from '../context/StarWarsContext';
 
 class Table extends React.Component {
   render() {
-    const { data, handleChange, filterByName, handleClickFilter,
-      filterByNumericValues, columnFilter, comparisonFilter,
-      valueFilter, newData, isNumericFilter, defaultColumnFilter } = this.context;
+    const { data, handleChange, filterByName,
+      handleClickFilter, filterByNumericValues, columnFilter,
+      comparisonFilter, valueFilter, newData, isNumericFilter,
+      defaultColumnFilter } = this.context;
+
+    // console.log(newData);
 
     const resultFilterName = data
       .filter((objData) => objData.name.includes(filterByName));
-
     const comparFilters = isNumericFilter ? newData : resultFilterName;
-    // console.log(newData);
 
     return (
       <main className="boxMain">

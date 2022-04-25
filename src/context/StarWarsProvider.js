@@ -55,7 +55,7 @@ class StarWarsProvider extends React.Component {
   }
 
   setNumericFilter = (objNumericFilter) => {
-    console.log(objNumericFilter.column);
+    // console.log(objNumericFilter.column);
 
     const { defaultColumnFilter } = this.state;
     const updateColumnFilter = defaultColumnFilter
@@ -74,37 +74,37 @@ class StarWarsProvider extends React.Component {
   numericFilterON = () => {
     const { data, filterByNumericValues } = this.state;
 
-    // const updateColumnFilter = filterByNumericValues
-    //   .filter(() => );
+    let newData = data;
 
-    let newData;
-    if (filterByNumericValues[0].comparison === 'menor que') {
-      newData = data
-        .filter((objDataFilt) => Number(objDataFilt[filterByNumericValues[0].column])
-        < Number(filterByNumericValues[0].value));
+    filterByNumericValues.forEach((objNumericFilter) => {
+      if (objNumericFilter.comparison === 'menor que') {
+        newData = newData
+          .filter((objDataFilt) => Number(objDataFilt[objNumericFilter.column])
+          < Number(objNumericFilter.value));
 
-      this.setState({
-        newData,
-      });
-    }
-    if (filterByNumericValues[0].comparison === 'maior que') {
-      newData = data
-        .filter((objDataFilt) => Number(objDataFilt[filterByNumericValues[0].column])
-        > Number(filterByNumericValues[0].value));
+        this.setState({
+          newData,
+        });
+      }
+      if (objNumericFilter.comparison === 'maior que') {
+        newData = newData
+          .filter((objDataFilt) => Number(objDataFilt[objNumericFilter.column])
+        > Number(objNumericFilter.value));
 
-      this.setState({
-        newData,
-      });
-    }
-    if (filterByNumericValues[0].comparison === 'igual a') {
-      newData = data
-        .filter((objDataFilt) => objDataFilt[filterByNumericValues[0].column]
-        === filterByNumericValues[0].value);
+        this.setState({
+          newData,
+        });
+      }
+      if (objNumericFilter.comparison === 'igual a') {
+        newData = newData
+          .filter((objDataFilt) => Number(objDataFilt[objNumericFilter.column])
+        === Number(objNumericFilter.value));
 
-      this.setState({
-        newData,
-      });
-    }
+        this.setState({
+          newData,
+        });
+      }
+    });
   };
 
   handleClickFilter = () => {
